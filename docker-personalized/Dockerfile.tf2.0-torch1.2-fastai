@@ -70,24 +70,21 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
         cloudpickle \
         scikit-learn \
         matplotlib \
-        Cython \
-        && \
+        Cython && \
 
 # ==================================================================
 # jupyter
 # ------------------------------------------------------------------
 
     $PIP_INSTALL \
-        jupyter \
-        && \
+        jupyter && \
 
 # ==================================================================
 # tensorflow
 # ------------------------------------------------------------------
 
     $PIP_INSTALL \
-        tensorflow-gpu \
-        && \
+        tensorflow-gpu && \
 
 # ==================================================================
 # keras
@@ -95,8 +92,30 @@ RUN APT_INSTALL="apt-get install -y --no-install-recommends" && \
 
     $PIP_INSTALL \
         h5py \
-        keras \
+        keras && \
+
+
+# ==================================================================
+# pytorch
+# ------------------------------------------------------------------
+
+    $PIP_INSTALL \
+        future \
+        numpy \
+        protobuf \
+        enum34 \
+        pyyaml \
+        typing \
         && \
+    $PIP_INSTALL \
+        torch==1.2.0 torchvision==0.4.0 -f https://download.pytorch.org/whl/torch_stable.html && \
+
+# ==================================================================
+# fastai
+# ------------------------------------------------------------------
+    $PIP_INSTALL \
+        fastai && \
+
 
 # ==================================================================
 # config & cleanup
